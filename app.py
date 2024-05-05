@@ -4,6 +4,7 @@ from sqlalchemy import create_engine, Column, Integer, String, Text
 from sqlalchemy.ext.declarative import declarative_base
 from DataBase import session, FileData
 from uploadFiles import upload
+from get_db_data import get_files
 
 app = Flask(__name__)
 oauth = OAuth2Provider(app)
@@ -15,10 +16,8 @@ def upload_file():
 
 
 @app.route('/files', methods=['GET'])
-def get_files():
-    files = session.query(FileData).all()
-    data = [{'filename': file.filename, 'content': file.content} for file in files]
-    return jsonify(data)
+def get_files_data():
+    return get_files()
 
 
 if __name__ == '__main__':
