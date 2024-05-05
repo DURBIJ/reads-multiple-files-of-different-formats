@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_oauthlib.provider import OAuth2Provider
 from sqlalchemy import create_engine, Column, Integer, String, Text
 from sqlalchemy.ext.declarative import declarative_base
@@ -43,6 +43,13 @@ def extract_text(file):
     if file.filename.endswith('.txt'):
         content = file.read().decode('utf-8')
     return content
+
+
+@app.route('/files', methods=['GET'])
+def get_files():
+    files = session.query(FileData).all()
+    data = [{'filename': file.filename, 'content': file.content} for file in files]
+    return jsonify(data)
 
 
 if __name__ == '__main__':
