@@ -17,7 +17,7 @@ Steps to Setup, Build, and Run the Application
 
             a.  Client: Sends a request to the server with an Authorization header containing a token.
             b.  Server: Receives the request and extracts the token from the Authorization header.
-            c.  Server: Validates the token against a predefined value (in this case, 'your_auth_token').
+            c.  Server: Validates the token against a predefined value (in this case, 'dummy_token').
             d.  Server: If the token is valid, the request is allowed to proceed; otherwise, the server returns a 401 Unauthorized response.
 
 
